@@ -28,6 +28,7 @@ public class Client {
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Invoice> invoices;
 
+
     @ManyToMany(mappedBy = "clients")
     private List<Products> products;
 }

@@ -12,12 +12,12 @@ public class InvoiceDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    // Relacion ManyToOne con la factura
+    // Relacion ManyToOne con la factura porque muchos detalles estan asociados a una factura
     @ManyToOne
     @JoinColumn(name = "INVOICE_ID", nullable = false)
     private Invoice invoice;
 
-    // Relacion ManyToOne con el producto
+    // Relacion ManyToOne con la factura al producto porque muchos detalles estan asociados a un producto
     @ManyToOne
     @JoinColumn(name = "PRODUCT_ID", nullable = false)
     private Products product;
@@ -33,4 +33,5 @@ public class InvoiceDetails {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Products products;
+
 }
