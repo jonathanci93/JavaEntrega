@@ -1,28 +1,26 @@
 package Jonathan_Carles.Entrega_Carles.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "INVOICE")
-
 public class Invoice {
-
-    public Invoice (Client client, double total) {
-        this.client = client;
-        this.createdAt = LocalDateTime.now();
-        this.total = total;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
     @ManyToOne
     @JoinColumn(name = "CLIENT_ID", nullable = false)
+    @JsonIgnore
     private Client client;
 
     @Column(name = "CREATED_AT", nullable = false, updatable = false)
@@ -30,5 +28,5 @@ public class Invoice {
 
     @Column(name = "TOTAL", nullable = false)
     private double total;
-
 }
+

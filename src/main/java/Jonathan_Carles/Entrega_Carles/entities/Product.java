@@ -1,11 +1,14 @@
 package Jonathan_Carles.Entrega_Carles.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "PRODUCTS")
 public class Product {
@@ -25,8 +28,9 @@ public class Product {
     @Column(name = "PRICE", nullable = false)
     private double price;
 
-    //Relation with InvoiceDetail
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<InvoiceDetail> invoiceDetails;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<InvoiceDetail> invoiceDetails;
 }
+
