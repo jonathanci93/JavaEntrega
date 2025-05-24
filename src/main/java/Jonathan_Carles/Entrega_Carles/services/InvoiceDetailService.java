@@ -14,22 +14,22 @@ public class InvoiceDetailService {
     @Autowired
     private InvoiceDetailRepository invoiceDetailRepository;
 
-    // ✅ Obtener todos los detalles
+
     public List<InvoiceDetail> getDetails() {
         return invoiceDetailRepository.findAll();
     }
 
-    // ✅ Obtener un detalle por ID
+
     public Optional<InvoiceDetail> getDetail(Integer id) {
         return invoiceDetailRepository.findById(id);
     }
 
-    // ✅ Guardar un nuevo detalle
+
     public InvoiceDetail saveDetail(InvoiceDetail detail) {
         return invoiceDetailRepository.save(detail);
     }
 
-    // ✅ Actualizar un detalle existente
+
     public Optional<InvoiceDetail> updateDetail(Integer id, InvoiceDetail detail) {
         Optional<InvoiceDetail> existing = invoiceDetailRepository.findById(id);
         if (existing.isPresent()) {
@@ -39,7 +39,7 @@ public class InvoiceDetailService {
         return Optional.empty();
     }
 
-    // ✅ Eliminar un detalle por ID
+
     public Optional<InvoiceDetail> deleteDetail(Integer id) {
         Optional<InvoiceDetail> toDelete = invoiceDetailRepository.findById(id);
         toDelete.ifPresent(invoiceDetailRepository::delete);
