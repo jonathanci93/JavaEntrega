@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,10 +25,17 @@ public class Invoice {
     @JsonIgnore
     private Client client;
 
-    @Column(name = "CREATED_AT", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "CREATED_AT", nullable = false)
+    private Date createdAt;
+
 
     @Column(name = "TOTAL", nullable = false)
     private double total;
+    @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL)
+    private List<InvoiceDetail> invoiceDetails;
+
+
+
 }
 

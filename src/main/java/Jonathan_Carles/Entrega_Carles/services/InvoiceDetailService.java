@@ -14,34 +14,35 @@ public class InvoiceDetailService {
     @Autowired
     private InvoiceDetailRepository invoiceDetailRepository;
 
+    // ✅ Obtener todos los detalles
     public List<InvoiceDetail> getDetails() {
         return invoiceDetailRepository.findAll();
     }
 
+    // ✅ Obtener un detalle por ID
     public Optional<InvoiceDetail> getDetail(Integer id) {
         return invoiceDetailRepository.findById(id);
     }
 
+    // ✅ Guardar un nuevo detalle
     public InvoiceDetail saveDetail(InvoiceDetail detail) {
         return invoiceDetailRepository.save(detail);
     }
 
+    // ✅ Actualizar un detalle existente
     public Optional<InvoiceDetail> updateDetail(Integer id, InvoiceDetail detail) {
-        Optional<InvoiceDetail> detDb = invoiceDetailRepository.findById(id);
-        if (detDb.isEmpty()) {
-            return Optional.empty();
+        Optional<InvoiceDetail> existing = invoiceDetailRepository.findById(id);
+        if (existing.isPresent()) {
+            detail.setInvoiceDetailId(id);
+            return Optional.of(invoiceDetailRepository.save(detail));
         }
-        detail.setInvoiceDetailId(id);
-        return Optional.of(invoiceDetailRepository.save(detail));
+        return Optional.empty();
     }
 
+    // ✅ Eliminar un detalle por ID
     public Optional<InvoiceDetail> deleteDetail(Integer id) {
-        Optional<InvoiceDetail> detDb = invoiceDetailRepository.findById(id);
-        if (detDb.isEmpty()) {
-            return Optional.empty();
-        }
-        invoiceDetailRepository.delete(detDb.get());
-        return detDb;
+        Optional<InvoiceDetail> toDelete = invoiceDetailRepository.findById(id);
+        toDelete.ifPresent(invoiceDetailRepository::delete);
+        return toDelete;
     }
 }
-
