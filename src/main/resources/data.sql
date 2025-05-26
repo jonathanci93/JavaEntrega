@@ -1,0 +1,26 @@
+-- CLIENTES
+INSERT INTO CLIENTS (id, NAME, LASTNAME, DOCNUMBER) VALUES
+(1, 'María', 'Pérez', '12345678901'),
+(2, 'Juan', 'Gómez', '23456789012'),
+(3, 'Lucía', 'Fernández', '34567890123'),
+(4, 'Carlos', 'Rodríguez', '45678901234'),
+(5, 'Ana', 'Martínez', '56789012345');
+
+-- PRODUCTOS
+INSERT INTO PRODUCTS (id, DESCRIPTION, CODE, STOCK, PRICE) VALUES
+(1, 'Mixer Phillips', 'HP721', 10, 19900),
+(2, 'Space Rocket', 'SRK01', 5, 21000),
+(3, 'Juego Educativo', 'JEDU02', 8, 10000),
+(4, 'Libro Ilustrado', 'LIB03', 6, 9000),
+(5, 'Puzzle 3D', 'PZL04', 4, 15000);
+
+-- FACTURAS DE PRUEBA
+INSERT INTO INVOICE (id, CLIENT_ID, CREATED_AT, TOTAL) VALUES
+(1, 1, '2025-05-17 10:00:00', 29900),
+(2, 2, '2025-05-17 10:30:00', 15000);
+
+-- DETALLES DE FACTURAS
+INSERT INTO INVOICE_DETAILS (invoice_detail_id, INVOICE_ID, PRODUCT_ID, AMOUNT, PRICE) VALUES
+(1, 1, 1, 1, 19900),
+(2, 1, 4, 1, 10000),
+(3, 2, 5, 1, 15000);
